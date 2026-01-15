@@ -1,0 +1,15 @@
+<display id="igb_gff" version="1.0.0" name="display in IGB">
+    <link id="View" name="View">
+        <url>$bioviz</url>
+        <param type="data" name="gff_file_for_name" viewable="False"/>
+        <param type="template" name="niceName" viewable="False" strip="True">
+            #import re
+            #set nm=$gff_file_for_name.name
+            ${re.sub('\W',"_",nm)}
+        </param>
+        <param type="data" name="gff_file" url="${niceName}.gff" />
+        <param type="template" name="bioviz" strip="True" >
+             http://bioviz.org/galaxy.html?version=${gff_file.dbkey}&amp;loadresidues=false&amp;feature_url_0=${gff_file.url}&amp;sym_name_0=${niceName}&amp;sym_method_0=${gff_file.url}&amp;query_url=${gff_file.url}&amp;server_url=galaxy
+        </param>
+    </link>
+</display>
